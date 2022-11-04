@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./build/src/app.js",
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "rollup -c --watch --bundleConfigAsCjs"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -12,7 +13,6 @@
     "debug": "~2.6.9",
     "http-errors": "~1.6.3",
 
-    "mongodb": "^4.11.0",
     "knex": "^0.95.7",
     "pg": "^8.6.0",
     "pg-query-stream": "^4.2.4",
