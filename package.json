@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./build/app.js"
+    "start": "node ./build/app.js",
+    "build": "tsc"
   },
   "dependencies": {
+    "typescript": "^4.3.5",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
