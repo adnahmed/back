@@ -10,6 +10,7 @@
     "release:db": "npx prisma migrate deploy"
   },
   "dependencies": {
+    "@prisma/client": "^4.5.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "envalid": "^7.1.1",
@@ -22,7 +23,6 @@
     "morgan": "~1.9.1",
     "npm-run-all": "^4.1.5",
     "prisma": "^4.5.0",
-    "pug": "2.0.0-beta11",
     "validator": "^13.6.0",
     "validator-fluent": "^0.4.2",
     "voyager": "^0.4.13"

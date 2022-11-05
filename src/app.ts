@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', (req, res) => {
-  res.send({ hello: 'world' })
+  res.send({ hello: 'dev' })
 });
 app.use(function (req, res, next) {
   next(createError(404));
@@ -35,7 +35,7 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  const port = parseInt(val, 10);
  if (isNaN(port)) {
     return val;
   }
