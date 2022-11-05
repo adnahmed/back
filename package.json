@@ -8,6 +8,7 @@
     "dev": "rollup -c --watch --bundleConfigAsCjs"
   },
   "dependencies": {
+    "@prisma/client": "^4.5.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "envalid": "^7.1.1",
