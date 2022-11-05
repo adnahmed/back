@@ -7,8 +7,7 @@
     "build": "tsc",
     "dev": "rollup -c --watch --bundleConfigAsCjs",
     "release": "npm-run-all release:*",
-    "release:start": "echo 'release start'",
-    "release:end": "echo 'release end'"
+    "release:db": "npx prisma migrate deploy"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
