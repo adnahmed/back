@@ -5,8 +5,6 @@ import createError from 'http-errors'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import express from 'express'
-import debugWrapper from 'debug'
-const debug = debugWrapper('back:server');
 const app = express();
 app.enable("trust proxy");
 app.disable("x-powered-by");
@@ -70,5 +68,5 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr?.port;
-  debug('Listening on ' + bind);
+  console.log('Listening on ' + bind);
 }
