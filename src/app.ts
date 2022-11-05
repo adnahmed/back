@@ -1,3 +1,5 @@
+import { config } from "dotenv-flow";
+config()
 import http from 'http'
 import createError from 'http-errors'
 import path from 'path'
