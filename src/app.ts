@@ -2,7 +2,6 @@ import { config } from "dotenv-flow";
 config()
 import http from 'http'
 import createError from 'http-errors'
-import path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import express from 'express'
@@ -11,13 +10,10 @@ const debug = debugWrapper('back:server');
 const app = express();
 app.enable("trust proxy");
 app.disable("x-powered-by");
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', (req, res) => {
   res.send({ hello: 'dev' })
 });
@@ -36,9 +32,10 @@ const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
 function normalizePort(val) {
   const port = parseInt(val, 10);
- if (isNaN(port)) {
+  if (isNaN(port)) {
     return val;
   }
   if (port >= 0) {
@@ -46,6 +43,7 @@ function normalizePort(val) {
   }
   return false;
 }
+
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
