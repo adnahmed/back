@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import express from 'express'
 const app = express();
-app.enable("trust proxy");
+app.enable("trust proxy"); // adjust for reverse proxy see: https://expressjs.com/en/guide/behind-proxies.html
 app.disable("x-powered-by");
 app.use(logger('dev'));
 app.use(express.json());
