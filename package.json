@@ -5,11 +5,15 @@
   "scripts": {
     "start": "node ./build/src/app.js",
     "build": "tsc",
-    "dev": "rollup -c --watch --bundleConfigAsCjs"
+    "dev": "rollup -c --watch --bundleConfigAsCjs",
+    "release": "npm-run-all release:*",
+    "release:db": "npx prisma migrate deploy"
   },
   "dependencies": {
+    "@prisma/client": "^4.5.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv-flow": "^3.2.0",
     "envalid": "^7.1.1",
     "express": "~4.16.1",
     "express-graphql": "^0.12.0",
@@ -18,6 +22,7 @@
     "graphql-voyager": "1.0.0-rc.31",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
+    "npm-run-all": "^4.1.5",
     "prisma": "^4.5.0",
     "validator": "^13.6.0",
     "validator-fluent": "^0.4.2",
