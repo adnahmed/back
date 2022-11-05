@@ -5,7 +5,10 @@
   "scripts": {
     "start": "node ./build/src/app.js",
     "build": "tsc",
-    "dev": "rollup -c --watch --bundleConfigAsCjs"
+    "dev": "rollup -c --watch --bundleConfigAsCjs",
+    "release": "npm-run-all release:*",
+    "release:start": "echo 'release start'",
+    "release:end": "echo 'release end'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
