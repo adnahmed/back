@@ -5,6 +5,7 @@ import createError from 'http-errors'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import express from 'express'
+const env = process.env;
 const app = express();
 app.enable("trust proxy"); // adjust for reverse proxy see: https://expressjs.com/en/guide/behind-proxies.html
 app.disable("x-powered-by");
@@ -20,11 +21,11 @@ app.use(function (req, res, next) {
 });
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = env.NODE_ENV  === 'dev' ? err : {};
   res.status(err.status || 500);
   res.send("Error")
 });
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(env.PORT || '3000');
 app.set('port', port);
 const server = http.createServer(app);
 server.listen(port);
