@@ -19,7 +19,6 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "prisma": "^4.5.0",
-    "pug": "2.0.0-beta11",
     "validator": "^13.6.0",
     "validator-fluent": "^0.4.2",
     "voyager": "^0.4.13"
