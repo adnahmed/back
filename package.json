@@ -43,8 +43,6 @@
     "prisma": "^4.5.0",
     "redis": "^4.2.0",
     "uuid": "^8.3.2",
-    "validator": "^13.6.0",
-    "validator-fluent": "^0.4.2",
     "voyager": "^0.4.13"
   },
   "devDependencies": {
@@ -65,7 +63,6 @@
     "@typescript-eslint/parser": "^4.28.3",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
-    "jest": "^27.0.6",
     "prettier": "^2.3.2",
     "rollup": "^2.53.1",
     "rollup-plugin-copy": "^3.4.0",
