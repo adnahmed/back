@@ -1,0 +1,6 @@
+
+interface UploadMutationResponse {
+    queryResponse: QueryResponse!
+    uploadURL: URL
+    timeout: Duration
+}

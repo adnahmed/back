@@ -1,0 +1,5 @@
+type Query {
+    login(id: String!, password: String!): AuthenticationResponse!
+    me: User
+    logout: QueryResponse!
+}

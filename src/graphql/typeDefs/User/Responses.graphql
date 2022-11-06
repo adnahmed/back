@@ -1,0 +1,4 @@
+type AuthenticationResponse {
+    queryResponse: QueryResponse!
+    token: String
+}

@@ -1,0 +1,5 @@
+type Mutation {
+    register(user: UserRegisterationInput!): AuthenticationResponse!
+    # TODO: registerFarm(farm: FarmRegisterationInput!): FarmRegisterationResponse!
+    unregister(id: UUID!): QueryResponse!
+}
