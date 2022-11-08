@@ -9,13 +9,12 @@
  */
 module.exports = {
   root: true,
-
   env: {
     es6: true,
     node: true,
   },
 
-  extends: ["eslint:recommended", "prettier"],
+  extends: ["eslint:recommended", "prettier", "typescript"],
 
   parserOptions: {
     ecmaVersion: 2020,
