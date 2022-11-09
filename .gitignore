@@ -12,3 +12,6 @@
 .env.production.local
 
 npm-debug.log*
+
+# local db data
+/data
