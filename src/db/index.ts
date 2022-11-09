@@ -3,7 +3,7 @@ const env = process.env;
 const prisma =  new PrismaClient({
     datasources: {
         db: {
-            url: env.NODE_ENV === "dev" ? env.LOCAL_DATABASE_URL : env.DATABASE_URL,
+            url: env.APP_ENV === "dev" ? env.LOCAL_DATABASE_URL : env.DATABASE_URL,
         },
     },
 });
