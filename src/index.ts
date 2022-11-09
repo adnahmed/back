@@ -11,19 +11,18 @@ const app = express();
 const server = http.createServer(app);
 const port = normalizePort(env.PORT || 3000);
 app.set('port', port);
-if( env.NODE_ENV !== "dev") app.enable("trust proxy"); // adjust for reverse proxy see: https://expressjs.com/en/guide/behind-proxies.html
+if( env.APP_ENV !== "dev") app.enable("trust proxy"); // adjust for reverse proxy see: https://expressjs.com/en/guide/behind-proxies.html
 app.disable("x-powered-by");
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
 app.use(function (req, res, next) {
   next(createError(404));
 });
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
-  res.locals.error = env.NODE_ENV === 'dev' ? err : {};
+  res.locals.error = env.APP_ENV === 'dev' ? err : {};
   res.status(err.status || 500);
   res.send("Error")
 });
