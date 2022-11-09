@@ -7,7 +7,7 @@ import logger from '../logger'
 const keyvRedis = new KeyvRedis(redis_client)
 const cache = new Keyv({ store: keyvRedis })
 cache.on('error', handleRedisConnection)
-function handleRedisConnection(error) {
+function handleRedisConnection(error: Error) {
     logger.error(error.message)
 }
 

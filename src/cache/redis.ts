@@ -1,16 +1,15 @@
 import Redis from 'ioredis'
 import logger from '../logger'
-import env from "../../env"
+import env from "../env"
 
-const port = env.REDIS_PORT || 6379
-const host = env.REDIS_HOST || "localhost"
-const retry = env.REDIS_MAX_CONNECTION_RETRY || 10
-const reconnect = env.REDIS_RECONNECT_TIME || 3000
+const port = env.REDIS_PORT 
+const host = env.REDIS_HOST 
+const retry = env.REDIS_MAX_CONNECTION_RETRY 
+const reconnect = env.REDIS_RECONNECT_TIME 
             
 const redis_client = new Redis(port, host, {
     username: env.REDIS_USERNAME,
     password: env.REDIS_PASSWORD,
-    db: env.REDIS_DB,
     retryStrategy: (times) => {
         if (times > retry) {
            return null; 
