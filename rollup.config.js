@@ -4,16 +4,20 @@ import json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import copy from "rollup-plugin-copy";
 import del from "rollup-plugin-delete";
+import run from "@rollup/plugin-run";
+import replace from "@rollup/plugin-replace";
+// AKA, development mode
+const isWatch = process.env.ROLLUP_WATCH === "true";
 export default {
-  input: "src/app.ts",
+  input: "src/index.ts",
   output: {
     dir: "build",
     format: "cjs",
     sourcemap: true,
-    chuckFileNames: "[name].chunk.js",
+    chunkFileNames: "[name].chunk.js",
   },
   plugins: [
-    del({ targets: [".build/*"], runOnce: true }),
+    del({ targets: ["build/*"], runOnce: true }),
     copy({
       targets: [
         {
@@ -28,11 +32,17 @@ export default {
             return JSON.stringify(pkg, null, " ");
           },
         },
+        {
+          src: [".pnp.cjs", ".yarnrc.yml", "yarn.lock"],
+          dest: "build",
+          copyOnce: true,
+        },
       ],
       copyOnce: true,
     }),
     nodeResolve({
-        extensions: [".ts", ".js", ".json", ".mjs"],
+      preferBuiltins: true,
+      extensions: [".ts", ".js", ".json", ".mjs"],
     }),
 
     commonjs(),
@@ -40,12 +50,24 @@ export default {
     json(),
 
     babel({
-        extensions: [".ts", ".js", ".mjs"],
-        babelHelpers: "bundled",
+      extensions: [".ts", ".js", ".mjs"],
+      babelHelpers: "bundled",
     }),
+    !isWatch &&
+      replace({
+        "process.env.NODE_ENV": `production`,
+        preventAssignment: true,
+      }),
 
+    isWatch &&
+      run({
+        execArgv: ["-r", "./.pnp.js", "-r", "source-map-support/register"],
+      }),
   ],
-  watch: {
-    exclude: ["node_modules"],
+
+  // Suppress warnings in 3rd party libraries
+  onwarn(warning, warn) {
+    if (warning.id?.includes("node_modules")) return;
+    warn(warning);
   },
 };
