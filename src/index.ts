@@ -5,8 +5,15 @@ import createError from 'http-errors'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import { expressMiddleware } from '@apollo/server';
+import { ApolloServer } from "apollo-server-express";
+import { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import env from "./env"
-import session from "./graphql/resolvers/User/auth/authSession"
+import schema from "./graphql/schema";
+import validation_rules from "./graphql/validation_rules";
+import cache from "./cache";
 const app = express();
 const server = http.createServer(app);
 const port = normalizePort(env.PORT || 3000);
@@ -17,6 +24,35 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+interface MyContext {
+  token?: String;
+}
+// Same ApolloServer initialization as before, plus the drain plugin
+// for our httpServer.
+const graphql = new ApolloServer<MyContext>({
+    schema: schema,
+    csrfPrevention: true,
+    introspection: true,
+    cache: cache,
+    validationRules: validation_rules,
+    plugins: [
+      ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+      ApolloServerPluginDrainHttpServer({ httpServer: server })
+    ],
+});
+// Ensure we wait for our server to start
+await graphql.start();
+
+app.use(
+  '/',
+  cors<cors.CorsRequest>(),
+  bodyParser.json(),
+  expressMiddleware(server, {
+    context: async ({ req }) => ({ token: req.headers.token }),
+  }),
+);
+
+
 app.use(function (req, res, next) {
   next(createError(404));
 });

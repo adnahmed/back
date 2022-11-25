@@ -1,5 +1,5 @@
 import { shield } from 'graphql-shield'
-import { createError } from 'http-errors'
+import createHttpError, { CreateHttpError } from 'http-errors'
 import { isAuthenticated } from './auth_rules'
 
 const permissions = shield({
@@ -8,7 +8,7 @@ const permissions = shield({
     Mutation: {
     },
 }, {
-    fallbackError: new createError(401, "Unauthorized.")
+    fallbackError: createHttpError(401, "Unauthorized.")
 })
 
 export default permissions;

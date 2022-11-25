@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es2016", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "es2022", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     "lib": [
       "ESNext",
       "es6"
     ], /* Specify a set of bundled library declaration files that describe the target runtime environment. */
-    "module": "CommonJS", /* Specify what module code is generated. */
+    "module": "ES2022", /* Specify what module code is generated. */
     "rootDir": "./src", /* Specify the root folder within your source files. */
     "moduleResolution": "node", /* Specify how TypeScript looks up a file from a given module specifier. */
     "allowJs": true, /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
@@ -18,6 +18,6 @@
     "skipLibCheck": true, /* Skip type checking all .d.ts files. */
   },
   "include": [
-    "src/"
+    "src/",
   ]
 }
