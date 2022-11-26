@@ -21,6 +21,7 @@ const redis_client = new Redis(port, host, {
         )
     },
 })
+
 redis_client.on('ready', () => {
     logger.info('Redis Client Connected.')
 })

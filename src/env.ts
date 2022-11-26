@@ -10,6 +10,7 @@ export default cleanEnv(process.env, {
   REDIS_RECONNECT_TIME: num({ default: 3000 }),
   REDIS_HOST: str({ default: 'localhost'}),
   PORT: num({default: 3000}),
+  GQL_PORT: num({default: 4000}),
   DATABASE_URL: str(),
   JWT_SECRET: str(),
 });

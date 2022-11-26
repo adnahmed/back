@@ -1,5 +1,6 @@
 type Query {
-    login(id: String!, password: String!): AuthenticationResponse!
+    loginPhone(phone: String!, password: String!): AuthenticationResponse!
+    loginEmail(email: EmailAddress!, password: String!): AuthenticationResponse!
     me: User
     logout: QueryResponse!
 }

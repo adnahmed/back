@@ -1,8 +1,8 @@
 /// <reference path="./authSession.d.ts" />
 
 import session from 'express-session'
-import redis from '../../../../cache/redis'
-import env from '../../../../env';
+import redis from '../../../cache/redis'
+import env from '../../../env';
 import connectRedis from "connect-redis"
 const RedisStore = connectRedis(session);
 
